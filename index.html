@@ -6,6 +6,7 @@
     <title>Irfan Khasim | Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preload" href="images/IMG-0001.png" as="image" type="image/png">
 
     <style>
                                 /* Uniform card text style for all carousels */
@@ -51,38 +52,177 @@
                         .service-item:hover {
                             transform: translateY(-5px);
                             border-color: var(--accent-primary);
-                            box-shadow: 0 10px 40px -10px rgba(99,102,241,0.25);
-                            background: rgba(99,102,241,0.10);
+                            box-shadow: 0 10px 40px -10px rgba(251, 191, 36, 0.22);
+                            background: rgba(251, 191, 36, 0.08);
                         }
-                /* --- CERTIFICATIONS HOVER EFFECT --- */
-                .cert-item {
+                /* --- CERTIFICATIONS (clickable PDF links) --- */
+                .cert-heading-wrap {
+                    margin-bottom: 1.25rem;
+                }
+                .cert-heading-wrap h3 {
+                    font-family: 'Space Grotesk', sans-serif;
+                    font-size: 1.2rem;
+                    font-weight: 600;
+                    color: var(--text-secondary);
+                    margin-bottom: 0.65rem;
+                    letter-spacing: -0.02em;
+                }
+                .cert-heading-line {
+                    height: 2px;
+                    width: 100%;
+                    max-width: 140px;
+                    border-radius: 2px;
+                    background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+                    opacity: 0.85;
+                }
+                .cert-panel {
+                    position: relative;
+                    padding: 1.15rem 1.1rem 1.25rem;
+                    border-radius: var(--radius-lg);
+                    border: 1px solid var(--glass-border);
+                    background:
+                        linear-gradient(145deg, rgba(251, 191, 36, 0.06) 0%, transparent 42%),
+                        linear-gradient(210deg, rgba(249, 115, 22, 0.05) 0%, transparent 38%),
+                        rgba(18, 17, 16, 0.62);
+                    box-shadow:
+                        inset 0 1px 0 rgba(255, 255, 255, 0.06),
+                        0 12px 40px -28px rgba(0, 0, 0, 0.55);
+                }
+                .cert-panel::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 1.5rem;
+                    right: 1.5rem;
+                    height: 1px;
+                    background: linear-gradient(90deg, transparent, rgba(251, 191, 36, 0.2), transparent);
+                    pointer-events: none;
+                }
+                a.cert-item {
+                    position: relative;
+                    overflow: hidden;
                     background: var(--glass-bg);
                     border: 1px solid var(--glass-border);
                     border-radius: var(--radius-md);
-                    padding: 1.2rem 1.5rem;
-                    margin-bottom: 1rem;
+                    padding: 1rem 1.15rem 1rem 1.1rem;
                     display: flex;
                     align-items: center;
-                    gap: 1rem;
-                    transition: 0.3s;
-                    box-shadow: 0 2px 8px -2px rgba(0,0,0,0.12);
+                    gap: 0.85rem 1rem;
+                    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s, background 0.3s;
+                    box-shadow: 0 2px 10px -4px rgba(0,0,0,0.35);
+                    text-decoration: none;
+                    color: inherit;
+                    cursor: pointer;
                 }
-                .cert-item:hover {
-                    transform: translateY(-5px);
-                    border-color: var(--accent-primary);
-                    box-shadow: 0 10px 40px -10px rgba(99,102,241,0.25);
-                    background: rgba(99,102,241,0.10);
+                a.cert-item::before {
+                    content: '';
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    bottom: 0;
+                    width: 4px;
+                    border-radius: 0 3px 3px 0;
+                    background: linear-gradient(180deg, var(--accent-primary), var(--accent-secondary));
+                    opacity: 0.65;
+                    transition: opacity 0.3s, width 0.25s ease;
+                }
+                a.cert-item::after {
+                    content: '';
+                    position: absolute;
+                    inset: 0;
+                    z-index: 0;
+                    background: linear-gradient(105deg, transparent 40%, rgba(251, 191, 36, 0.07) 50%, transparent 60%);
+                    background-size: 200% 100%;
+                    opacity: 0;
+                    transition: opacity 0.35s;
+                    pointer-events: none;
+                }
+                a.cert-item > span {
+                    position: relative;
+                    z-index: 1;
+                }
+                a.cert-item:hover {
+                    transform: translateY(-4px);
+                    border-color: rgba(251, 191, 36, 0.4);
+                    box-shadow:
+                        0 14px 36px -16px rgba(251, 191, 36, 0.28),
+                        0 4px 16px -8px rgba(0, 0, 0, 0.5);
+                    background: rgba(251, 191, 36, 0.07);
+                }
+                a.cert-item:hover::before {
+                    opacity: 1;
+                    width: 5px;
+                }
+                a.cert-item:hover::after {
+                    opacity: 1;
+                }
+                a.cert-item:focus-visible {
+                    outline: 2px solid var(--accent-primary);
+                    outline-offset: 3px;
+                }
+                a.cert-item .cert-index {
+                    flex-shrink: 0;
+                    width: 2rem;
+                    font-family: 'Space Grotesk', 'Inter', sans-serif;
+                    font-size: 0.7rem;
+                    font-weight: 700;
+                    letter-spacing: 0.14em;
+                    color: rgba(148, 163, 184, 0.55);
+                    text-align: center;
+                    padding-top: 0.1rem;
+                }
+                a.cert-item:hover .cert-index {
+                    color: var(--accent-secondary);
+                }
+                a.cert-item .cert-name {
+                    flex: 1;
+                    min-width: 0;
+                    font-family: 'Space Grotesk', sans-serif;
+                    font-size: 0.92rem;
+                    font-weight: 600;
+                    color: var(--text-primary);
+                    letter-spacing: 0.045em;
+                    line-height: 1.4;
+                    transition: color 0.25s;
+                }
+                a.cert-item:hover .cert-name {
+                    color: #f1f5f9;
+                }
+                a.cert-item .cert-cue {
+                    flex-shrink: 0;
+                    font-size: 1.15rem;
+                    font-weight: 300;
+                    color: rgba(148, 163, 184, 0.45);
+                    line-height: 1;
+                    transition: color 0.25s, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+                }
+                a.cert-item:hover .cert-cue {
+                    color: var(--accent-primary);
+                    transform: translateX(4px);
+                }
+                @media (prefers-reduced-motion: reduce) {
+                    a.cert-item,
+                    a.cert-item::before,
+                    a.cert-item:hover .cert-cue {
+                        transition-duration: 0.01ms !important;
+                    }
+                    a.cert-item:hover {
+                        transform: none;
+                    }
+                    a.cert-item:hover .cert-cue {
+                        transform: none;
+                    }
                 }
         /* --- DESIGN TOKENS --- */
         :root {
-            --bg-primary: #0b1121;
-            --bg-secondary: #151e32;
-            --accent-primary: #6366f1; /* Indigo */
-            --accent-secondary: #a855f7; /* Purple */
-            --text-primary: #f8fafc;
-            --text-secondary: #94a3b8;
-            --glass-bg: rgba(30, 41, 59, 0.6);
-            --glass-border: rgba(255, 255, 255, 0.08);
+            --bg-primary: #131211;
+            --bg-secondary: #1d1c1a;
+            --accent-primary: #fbbf24;
+            --accent-secondary: #f97316;
+            --text-primary: #f5f4f3;
+            --text-secondary: #9c9a97;
+            --glass-bg: rgba(38, 35, 33, 0.68);
+            --glass-border: rgba(255, 255, 255, 0.065);
             --radius-md: 12px;
             --radius-lg: 20px;
             --nav-height: 80px;
@@ -93,20 +233,58 @@
         
         body {
             font-family: 'Inter', sans-serif;
+            position: relative;
             background-color: var(--bg-primary);
             color: var(--text-primary);
             min-height: 100vh;
             overflow-x: hidden;
             display: flex;
             flex-direction: column;
-            /* Subtle Grid Pattern for Texture */
-            background-image: 
-                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                radial-gradient(circle at 15% 50%, rgba(99, 102, 241, 0.15), transparent 25%),
-                radial-gradient(circle at 85% 30%, rgba(168, 85, 247, 0.15), transparent 25%);
-            background-size: 50px 50px, 50px 50px, cover, cover;
+            /* Layered textures: stipple, grid, diagonal weave, soft light orbs (first = top layer) */
+            background-image:
+                radial-gradient(rgba(255, 255, 255, 0.038) 0.5px, transparent 1px),
+                linear-gradient(rgba(255, 255, 255, 0.022) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.022) 1px, transparent 1px),
+                repeating-linear-gradient(
+                    -14deg,
+                    transparent 0,
+                    transparent 64px,
+                    rgba(255, 255, 255, 0.014) 64px,
+                    rgba(255, 255, 255, 0.014) 65px
+                ),
+                radial-gradient(ellipse 115% 80% at 50% -28%, rgba(251, 191, 36, 0.055), transparent 54%),
+                radial-gradient(ellipse 58% 52% at 96% 38%, rgba(249, 115, 22, 0.042), transparent 52%),
+                radial-gradient(ellipse 48% 42% at 6% 86%, rgba(255, 255, 255, 0.028), transparent 55%);
+            background-size:
+                14px 14px,
+                52px 52px,
+                52px 52px,
+                auto,
+                100% 100%,
+                100% 100%,
+                100% 100%;
+            background-repeat: repeat, repeat, repeat, repeat, no-repeat, no-repeat, no-repeat;
+            background-position: 0 0, 0 0, 0 0, 0 0, center top, right center, left bottom;
             background-attachment: fixed;
+        }
+
+        /* Subtle film-grain / noise (sits above bg color, below page content) */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.18;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 220px 220px;
+            mix-blend-mode: overlay;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            body::before {
+                opacity: 0.09;
+            }
         }
 
         a, button { cursor: pointer; color: inherit; border: none; font-family: inherit; text-decoration: none; }
@@ -126,7 +304,7 @@
         .nav-container {
             width: 100%;
             max-width: 900px;
-            background: rgba(15, 23, 42, 0.85); /* Slightly darker for contrast */
+            background: rgba(24, 22, 21, 0.86);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             border: 1px solid var(--glass-border);
@@ -168,6 +346,8 @@
 
         /* --- MAIN LAYOUT --- */
         main {
+            position: relative;
+            z-index: 1;
             margin-top: calc(var(--nav-height) + 20px);
             flex: 1;
             width: 100%;
@@ -187,7 +367,7 @@
             min-height: 80vh;
             flex-direction: column;
             justify-content: center;
-            align-items: flex-start;
+            align-items: stretch;
         }
 
         /* --- ANIMATIONS --- */
@@ -209,7 +389,7 @@
         p { line-height: 1.7; color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 1.05rem; }
         
         .highlight { color: var(--accent-primary); }
-        .gradient-text { background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .gradient-text { background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
 
         .btn {
             display: inline-flex; align-items: center; gap: 0.8rem;
@@ -217,10 +397,11 @@
             font-weight: 600; transition: 0.2s; font-size: 1rem;
         }
         .btn-primary {
-            background: var(--accent-primary); color: white;
-            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: #0a0a0a;
+            box-shadow: 0 4px 28px rgba(251, 191, 36, 0.35);
         }
-        .btn-primary:hover { transform: translateY(-2px); background: #5558e6; }
+        .btn-primary:hover { transform: translateY(-2px); filter: brightness(1.08); }
         .btn-outline { border: 1px solid var(--glass-border); background: rgba(255,255,255,0.03); color: var(--text-primary); }
         .btn-outline:hover { background: rgba(255,255,255,0.08); }
 
@@ -240,6 +421,170 @@
         /* --- PAGE SPECIFIC --- */
 
         /* HOME */
+        .hero-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(300px, 0.58fr);
+            gap: clamp(1.75rem, 4.5vw, 3.5rem);
+            align-items: center;
+            width: 100%;
+        }
+        .hero-content {
+            min-width: 0;
+        }
+        .hero-eyebrow {
+            color: var(--text-primary);
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        .hero-lead {
+            font-size: 1.2rem;
+            max-width: 38rem;
+            color: var(--text-secondary);
+            line-height: 1.75;
+            margin-bottom: 0;
+        }
+        .hero-actions {
+            margin-top: 2rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .hero-visual {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-width: 0;
+            gap: 0.65rem;
+        }
+        button.hero-polaroid {
+            position: relative;
+            width: 100%;
+            max-width: 440px;
+            margin: 0;
+            padding: 0.65rem 0.65rem 2.1rem;
+            font: inherit;
+            color: inherit;
+            cursor: pointer;
+            border: none;
+            appearance: none;
+            -webkit-appearance: none;
+            background: linear-gradient(168deg, #f3f0ea 0%, #e8e4de 48%, #ddd8d0 100%);
+            border-radius: 5px;
+            box-shadow:
+                0 2px 4px rgba(0, 0, 0, 0.22),
+                0 14px 32px -8px rgba(0, 0, 0, 0.55),
+                0 28px 56px -20px rgba(0, 0, 0, 0.45),
+                inset 0 1px 0 rgba(255, 255, 255, 0.65);
+            transform: rotate(-1.25deg);
+            transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.45s ease;
+        }
+        button.hero-polaroid:focus-visible {
+            outline: 2px solid var(--accent-primary);
+            outline-offset: 5px;
+        }
+        button.hero-polaroid:hover:not(.hero-polaroid--animating) {
+            transform: rotate(0deg) translateY(-4px);
+            box-shadow:
+                0 4px 8px rgba(0, 0, 0, 0.25),
+                0 20px 42px -10px rgba(0, 0, 0, 0.55),
+                0 36px 64px -24px rgba(251, 191, 36, 0.12),
+                inset 0 1px 0 rgba(255, 255, 255, 0.7);
+        }
+        button.hero-polaroid.hero-polaroid--animating {
+            animation: heroPolaroidSnap 0.78s cubic-bezier(0.34, 1.2, 0.52, 1) forwards;
+        }
+        @keyframes heroPolaroidSnap {
+            0%, 100% {
+                transform: rotate(-1.25deg) scale(1);
+                filter: brightness(1);
+                box-shadow:
+                    0 2px 4px rgba(0, 0, 0, 0.22),
+                    0 14px 32px -8px rgba(0, 0, 0, 0.55),
+                    0 28px 56px -20px rgba(0, 0, 0, 0.45),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.65);
+            }
+            22% { transform: rotate(0deg) scale(0.94); filter: brightness(1.12); }
+            45% {
+                transform: rotate(-0.5deg) scale(1.03);
+                box-shadow:
+                    0 4px 8px rgba(0, 0, 0, 0.28),
+                    0 18px 40px -8px rgba(0, 0, 0, 0.5),
+                    0 0 0 1px rgba(251, 191, 36, 0.45),
+                    0 0 28px -4px rgba(251, 191, 36, 0.35),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.75);
+            }
+        }
+        button.hero-polaroid::before {
+            content: '';
+            position: absolute;
+            inset: -6px;
+            border-radius: 10px;
+            background: linear-gradient(145deg, rgba(251, 191, 36, 0.14), rgba(249, 115, 22, 0.06));
+            z-index: -2;
+            filter: blur(0.5px);
+            transform: rotate(2deg);
+            opacity: 0.85;
+        }
+        button.hero-polaroid::after {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            z-index: -1;
+            pointer-events: none;
+            box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.12);
+        }
+        .hero-polaroid__inner {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #1a1918;
+            box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.2);
+            aspect-ratio: 4 / 5;
+        }
+        .hero-photo {
+            display: block;
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition:
+                opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+                filter 0.65s ease,
+                transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .hero-photo--cartoon {
+            opacity: 0;
+            transform: scale(1.04);
+            filter: saturate(1.15) contrast(1.02);
+        }
+        button.hero-polaroid.is-cartoon .hero-photo--photo {
+            opacity: 0;
+            transform: scale(1.06);
+            filter: blur(3px) brightness(0.95);
+        }
+        button.hero-polaroid.is-cartoon .hero-photo--cartoon {
+            opacity: 1;
+            transform: scale(1);
+        }
+        .hero-polaroid-hint {
+            margin: 0;
+            font-size: 0.72rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            opacity: 0.65;
+            text-align: center;
+            max-width: 16rem;
+            line-height: 1.35;
+        }
         .tech-stack {
             margin-top: 4rem;
             padding-top: 2rem;
@@ -247,6 +592,63 @@
             width: 100%;
         }
         .tech-icons { display: flex; gap: 2rem; font-size: 2rem; color: var(--text-secondary); opacity: 0.7; flex-wrap: wrap; }
+        @media (max-width: 900px) {
+            .hero-layout {
+                grid-template-columns: 1fr;
+                gap: 2.25rem;
+            }
+            .hero-visual {
+                order: 1;
+            }
+            .hero-content {
+                order: 0;
+            }
+            button.hero-polaroid {
+                max-width: 360px;
+                transform: rotate(-0.75deg);
+            }
+            button.hero-polaroid:hover:not(.hero-polaroid--animating) {
+                transform: rotate(0deg) translateY(-4px);
+            }
+            @keyframes heroPolaroidSnap {
+                0%, 100% {
+                    transform: rotate(-0.75deg) scale(1);
+                    filter: brightness(1);
+                    box-shadow:
+                        0 2px 4px rgba(0, 0, 0, 0.22),
+                        0 14px 32px -8px rgba(0, 0, 0, 0.55),
+                        0 28px 56px -20px rgba(0, 0, 0, 0.45),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.65);
+                }
+                22% { transform: rotate(0deg) scale(0.94); filter: brightness(1.12); }
+                45% {
+                    transform: rotate(-0.35deg) scale(1.03);
+                    box-shadow:
+                        0 4px 8px rgba(0, 0, 0, 0.28),
+                        0 18px 40px -8px rgba(0, 0, 0, 0.5),
+                        0 0 0 1px rgba(251, 191, 36, 0.45),
+                        0 0 28px -4px rgba(251, 191, 36, 0.35),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.75);
+                }
+            }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            button.hero-polaroid,
+            button.hero-polaroid:hover {
+                transform: none !important;
+                transition: none;
+            }
+            button.hero-polaroid.hero-polaroid--animating {
+                animation: none !important;
+            }
+            .hero-photo {
+                transition: opacity 0.2s ease;
+            }
+            button.hero-polaroid.is-cartoon .hero-photo--photo {
+                filter: none;
+                transform: none;
+            }
+        }
 
         /* ABOUT */
         .services-grid {
@@ -261,7 +663,7 @@
         /* PROJECTS */
         .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
         .project-preview {
-            height: 200px; background: #2d3748; border-radius: 8px; margin-bottom: 1.5rem;
+            height: 200px; background: #141414; border-radius: 8px; margin-bottom: 1.5rem;
             display: flex; align-items: center; justify-content: center; font-size: 3rem; color: rgba(255,255,255,0.1);
         }
         .bullet-list { list-style: none; margin: 1rem 0; }
@@ -279,8 +681,15 @@
             content: ''; position: absolute; left: -6px; top: 5px; width: 10px; height: 10px;
             background: var(--accent-primary); border-radius: 50%; box-shadow: 0 0 10px var(--accent-primary);
         }
-        .cert-list { display: flex; flex-direction: column; gap: 1rem; }
-        .cert-item { display: flex; align-items: center; gap: 1rem; padding: 1rem; background: var(--bg-secondary); border-radius: var(--radius-md); }
+        .cert-list { display: flex; flex-direction: column; gap: 0.75rem; }
+        @media (max-width: 900px) {
+            .cert-panel {
+                padding: 1rem 0.85rem 1.1rem;
+            }
+            a.cert-item .cert-name {
+                font-size: 0.85rem;
+            }
+        }
 
         /* CONTACT */
         .contact-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
@@ -302,7 +711,13 @@
             gap: 1.8rem;
             overflow-x: auto;
             scroll-behavior: smooth;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
             padding: 0.5rem 0 1.5rem;
+            cursor: grab;
+        }
+        .experience-carousel.dragging {
+            cursor: grabbing;
         }
         .experience-carousel::-webkit-scrollbar {
             display: none;
@@ -315,11 +730,60 @@
             flex-direction: column;
             align-items: stretch;
             box-sizing: border-box;
+            scroll-snap-align: start;
+        }
+        .exp-scope {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding: 0.35rem 0.65rem;
+            border-radius: 999px;
+            border: 1px solid var(--glass-border);
+            background: rgba(251, 191, 36, 0.12);
+            color: var(--accent-secondary);
+            margin-bottom: 0.85rem;
+            align-self: flex-start;
+        }
+        .exp-scope--campus {
+            background: rgba(249, 115, 22, 0.12);
+            color: var(--accent-primary);
+        }
+        .exp-section-break {
+            min-width: 200px;
+            max-width: 220px;
+            flex: 0 0 auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: stretch;
+            padding: 1.25rem 1rem;
+            background: rgba(22, 21, 20, 0.52);
+            border: 1px dashed var(--glass-border);
+            border-radius: var(--radius-md);
+            scroll-snap-align: start;
+        }
+        .exp-section-break h3 {
+            font-size: 1rem;
+            margin-bottom: 0.35rem;
+            color: var(--text-primary);
+        }
+        .exp-section-break p {
+            font-size: 0.85rem;
+            margin-bottom: 0;
+            color: var(--text-secondary);
+            line-height: 1.45;
         }
         @media (max-width: 768px) {
             .experience-carousel .card {
                 min-width: 280px;
                 max-width: 100%;
+            }
+            .exp-section-break {
+                min-width: 160px;
+                max-width: 180px;
+                padding: 1rem 0.75rem;
             }
         }
         .exp-nav {
@@ -329,7 +793,7 @@
             width: 42px;
             height: 42px;
             border-radius: 50%;
-            background: rgba(15,23,42,0.85);
+            background: rgba(22, 21, 20, 0.92);
             border: 1px solid var(--glass-border);
             color: var(--text-primary);
             display: flex;
@@ -340,7 +804,9 @@
             box-shadow: 0 8px 20px rgba(0,0,0,0.4);
         }
         .exp-nav:hover {
-            background: var(--accent-primary);
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: #0a0a0a;
+            border-color: transparent;
         }
         .exp-nav.left {
             left: -18px;
@@ -367,51 +833,208 @@
         }
 
         .project-preview img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;      /* auto crop ikut frame */
-        border-radius: 8px;     /* match existing preview corner */
-        opacity: 0.9;           /* optional: bagi effect sama macam placeholder icon */
-        
-        /* Subsection title used inside Featured Experience */
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+            opacity: 0.9;
+        }
 
-        .subsection-title {
-        font-size: 1.1rem;               /* kecil dari h2, tapi jelas */
-        font-weight: 600;
-        color: var(--accent-primary);
-        margin-top: 2.25rem;
-        margin-bottom: 0.9rem;
-        letter-spacing: 0.3px;
-}
+        .experience-intro {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.65;
+            max-width: 720px;
+            margin-bottom: 0.5rem;
+        }
 
-/* Optional thin divider under main heading (subtle) */
-    .featured-divider {
-    height: 1px;
-    background: linear-gradient(90deg, rgba(99,102,241,0.18), rgba(168,85,247,0.08));
-    margin: 0.6rem 0 1.6rem 0;
-    border-radius: 2px;
-}
+        .featured-divider {
+            height: 1px;
+            background: linear-gradient(90deg, rgba(251, 191, 36, 0.35), rgba(249, 115, 22, 0.12));
+            margin: 0.75rem 0 1.5rem 0;
+            border-radius: 2px;
+        }
 
-/* Subsection headings & divider for Experience section */
-.subsection-title {
-  font-size: 1.1rem;               /* smaller than main h2 but noticeable */
-  font-weight: 600;
-  color: var(--accent-primary);
-  margin-top: 2.25rem;
-  margin-bottom: 0.6rem;
-  letter-spacing: 0.3px;
-}
-
-/* subtle divider under subsection heading */
-.featured-divider {
-  height: 1px;
-  background: linear-gradient(90deg, rgba(99,102,241,0.14), rgba(168,85,247,0.06));
-  margin-bottom: 1.6rem;
-  border-radius: 2px;
-}
-
-}
-
+        /* --- CERTIFICATE PDF MODAL --- */
+        .cert-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 3000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: clamp(0.75rem, 3vw, 1.75rem);
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.38s ease, visibility 0.38s;
+            pointer-events: none;
+        }
+        .cert-modal.is-open {
+            visibility: visible;
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .cert-modal-backdrop {
+            position: absolute;
+            inset: 0;
+            background: rgba(12, 11, 10, 0.84);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            opacity: 0;
+            transition: opacity 0.38s ease;
+            cursor: pointer;
+            border: none;
+            padding: 0;
+            margin: 0;
+        }
+        .cert-modal.is-open .cert-modal-backdrop {
+            opacity: 1;
+        }
+        .cert-modal-dialog {
+            position: relative;
+            z-index: 1;
+            width: min(920px, 96vw);
+            max-height: min(90vh, 920px);
+            background: linear-gradient(165deg, rgba(28, 26, 25, 0.99), rgba(14, 13, 12, 0.99));
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            box-shadow:
+                0 28px 90px -24px rgba(0, 0, 0, 0.85),
+                0 0 0 1px rgba(251, 191, 36, 0.12),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            transform: scale(0.94) translateY(28px);
+            opacity: 0;
+            transition:
+                transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+                opacity 0.38s ease;
+        }
+        .cert-modal.is-open .cert-modal-dialog {
+            transform: scale(1) translateY(0);
+            opacity: 1;
+        }
+        .cert-modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 1rem 1.15rem 1rem 1.35rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: rgba(22, 21, 20, 0.94);
+            flex-shrink: 0;
+        }
+        .cert-modal-header h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 0;
+            letter-spacing: -0.02em;
+        }
+        .cert-modal-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-shrink: 0;
+        }
+        .cert-modal-open-tab {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            padding: 0.45rem 0.75rem;
+            border-radius: 999px;
+            border: 1px solid var(--glass-border);
+            background: rgba(255, 255, 255, 0.04);
+            text-decoration: none;
+            transition: color 0.2s, border-color 0.2s, background 0.2s;
+        }
+        .cert-modal-open-tab:hover {
+            color: var(--text-primary);
+            border-color: var(--accent-primary);
+            background: rgba(251, 191, 36, 0.1);
+        }
+        .cert-modal-close {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid var(--glass-border);
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.2s, border-color 0.2s, transform 0.2s;
+            font-size: 1.1rem;
+            line-height: 1;
+        }
+        .cert-modal-close:hover {
+            background: rgba(251, 191, 36, 0.15);
+            border-color: var(--accent-primary);
+        }
+        .cert-modal-close:focus-visible {
+            outline: 2px solid var(--accent-primary);
+            outline-offset: 2px;
+        }
+        .cert-modal-body {
+            flex: 1;
+            min-height: min(72vh, 640px);
+            position: relative;
+            background: rgba(10, 9, 9, 0.42);
+        }
+        .cert-modal-body iframe {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .cert-modal-loading {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            pointer-events: none;
+            opacity: 1;
+            transition: opacity 0.35s ease;
+            background: rgba(16, 15, 14, 0.75);
+        }
+        .cert-modal-loading.is-hidden {
+            opacity: 0;
+        }
+        .cert-modal-spinner {
+            width: 36px;
+            height: 36px;
+            border: 3px solid var(--glass-border);
+            border-top-color: var(--accent-primary);
+            border-radius: 50%;
+            animation: certSpin 0.75s linear infinite;
+        }
+        @keyframes certSpin {
+            to { transform: rotate(360deg); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .cert-modal,
+            .cert-modal-backdrop,
+            .cert-modal-dialog {
+                transition-duration: 0.01ms !important;
+            }
+            .cert-modal-spinner {
+                animation: none;
+                border-top-color: var(--glass-border);
+            }
+        }
 
     </style>
 </head>
@@ -434,33 +1057,43 @@
     <main>
         
         <section id="home" class="page-view active">
-            <div class="animate-in">
-                <span style="color: #fff; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; font-size: 0.9rem; margin-bottom: 1rem; display: block;">Computer Science • Content Creation • Volunteering</span>
-                <h1>
-                    <span class="gradient-text">Creating Technology</span>,<br>
-                    <span class="gradient-text">Sharing Stories</span>,<br>
-                    <span class="gradient-text">Serving Communities.</span>
-                </h1>
-                <p style="max-width: 650px; font-size: 1.2rem;">
-                    I am Irfan Khasim, a Computer Science student passionate about building practical software solutions and creating meaningful digital content. My journey blends technical knowledge, creative storytelling, and active volunteering—shaping my sense of responsibility, teamwork, and leadership. I aim to use technology not only to solve problems, but also to communicate ideas, inspire communities, and create a positive impact.
-                </p>
-                <div style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
-                    <button class="btn btn-primary" onclick="navTo('experience')">
-                        View Work <i class="fas fa-arrow-right"></i>
-                    </button>
-                    <button class="btn btn-outline" onclick="navTo('contact')">
-                        Let's Connect
-                    </button>
-                </div>
-
-                <div class="tech-stack">
-                    <p style="font-size: 0.9rem; margin-bottom: 1rem;">Tech & Creative Toolkit:</p>
-                    <div class="tech-icons">
-                        <i class="fab fa-java" title="Java"></i>
-                        <i class="fab fa-js" title="JavaScript"></i>
-                        <i class="fab fa-html5" title="HTML5"></i>
-                        <i class="fas fa-database" title="MySQL"></i>
+            <div class="hero-layout">
+                <div class="hero-content animate-in">
+                    <span class="hero-eyebrow">Computer Science • Content Creation • Volunteering</span>
+                    <h1>
+                        <span class="gradient-text">Creating Technology</span>,<br>
+                        <span class="gradient-text">Sharing Stories</span>,<br>
+                        <span class="gradient-text">Serving Communities.</span>
+                    </h1>
+                    <p class="hero-lead">
+                        I am Irfan Khasim, a Computer Science student passionate about building practical software solutions and creating meaningful digital content. My journey blends technical knowledge, creative storytelling, and active volunteering—shaping my sense of responsibility, teamwork, and leadership. I aim to use technology not only to solve problems, but also to communicate ideas, inspire communities, and create a positive impact.
+                    </p>
+                    <div class="hero-actions">
+                        <button class="btn btn-primary" onclick="navTo('experience')">
+                            View Work <i class="fas fa-arrow-right"></i>
+                        </button>
+                        <button class="btn btn-outline" onclick="navTo('contact')">
+                            Let's Connect
+                        </button>
                     </div>
+                </div>
+                <aside class="hero-visual animate-in delay-2">
+                    <button type="button" class="hero-polaroid" id="heroPolaroidBtn" aria-pressed="false" aria-label="Show illustrated portrait">
+                        <div class="hero-polaroid__inner">
+                            <img class="hero-photo hero-photo--photo" src="images/IMG_0939.JPEG" alt="Irfan Khasim" width="720" height="900" loading="eager" decoding="async">
+                            <img class="hero-photo hero-photo--cartoon" src="images/IMG-0001.png" alt="" width="720" height="900" loading="lazy" decoding="async" aria-hidden="true">
+                        </div>
+                    </button>
+                    <p class="hero-polaroid-hint">Tap photo · illustrated look</p>
+                </aside>
+            </div>
+            <div class="tech-stack animate-in delay-3">
+                <p style="font-size: 0.9rem; margin-bottom: 1rem;">Tech & Creative Toolkit:</p>
+                <div class="tech-icons">
+                    <i class="fab fa-java" title="Java"></i>
+                    <i class="fab fa-js" title="JavaScript"></i>
+                    <i class="fab fa-html5" title="HTML5"></i>
+                    <i class="fas fa-database" title="MySQL"></i>
                 </div>
             </div>
         </section>
@@ -529,11 +1162,6 @@
         </p>
     </div>
 
-</div>
-
-
-</div>
-
             </div>
         </section>
 
@@ -569,21 +1197,42 @@
                 </div>
 
                 <div class="cert-column">
-                    <h3 style="font-size: 1.2rem; margin-bottom: 1.5rem; color: var(--text-secondary);">Certifications</h3>
-                    <div class="cert-list">
-                        <div class="cert-item">
-                            <i class="fab fa-apple fa-2x" style="color: #fff;"></i>
-                            <div>
-                                <h4 style="font-size: 0.9rem;">STDC iOS App Ideation</h4>
-                                <span style="font-size: 0.8rem; color: var(--text-secondary);">2025 • Beginner</span>
-                            </div>
-                        </div>
-                        <div class="cert-item">
-                            <i class="fas fa-brain fa-2x" style="color: #4285F4;"></i>
-                            <div>
-                                <h4 style="font-size: 0.9rem;">NIIT AI Certification</h4>
-                                <span style="font-size: 0.8rem; color: var(--text-secondary);">2024 • Professional</span>
-                            </div>
+                    <div class="cert-heading-wrap">
+                        <h3>Certifications</h3>
+                        <div class="cert-heading-line" aria-hidden="true"></div>
+                    </div>
+                    <div class="cert-panel">
+                        <div class="cert-list">
+                            <a class="cert-item" href="images/APPLE.pdf" aria-label="View IOS APP IDEATION certificate">
+                                <span class="cert-index" aria-hidden="true">01</span>
+                                <span class="cert-name">IOS APP IDEATION</span>
+                                <span class="cert-cue" aria-hidden="true">→</span>
+                            </a>
+                            <a class="cert-item" href="images/NIIT.pdf" aria-label="View NIIT ARTIFICIAL INTELLIGENCE certificate">
+                                <span class="cert-index" aria-hidden="true">02</span>
+                                <span class="cert-name">NIIT ARTIFICIAL INTELLIGENCE</span>
+                                <span class="cert-cue" aria-hidden="true">→</span>
+                            </a>
+                            <a class="cert-item" href="images/ORACLE.pdf" aria-label="View ORACLE FOUNDATION ASSOCIATE certificate">
+                                <span class="cert-index" aria-hidden="true">03</span>
+                                <span class="cert-name">ORACLE FOUNDATION ASSOCIATE</span>
+                                <span class="cert-cue" aria-hidden="true">→</span>
+                            </a>
+                            <a class="cert-item" href="images/HTML.pdf" aria-label="View LEARN HTML certificate">
+                                <span class="cert-index" aria-hidden="true">04</span>
+                                <span class="cert-name">LEARN HTML</span>
+                                <span class="cert-cue" aria-hidden="true">→</span>
+                            </a>
+                            <a class="cert-item" href="images/SQL.pdf" aria-label="View LEARN SQL certificate">
+                                <span class="cert-index" aria-hidden="true">05</span>
+                                <span class="cert-name">LEARN SQL</span>
+                                <span class="cert-cue" aria-hidden="true">→</span>
+                            </a>
+                            <a class="cert-item" href="images/JAVA.pdf" aria-label="View LEARN JAVA certificate">
+                                <span class="cert-index" aria-hidden="true">06</span>
+                                <span class="cert-name">LEARN JAVA</span>
+                                <span class="cert-cue" aria-hidden="true">→</span>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -592,12 +1241,15 @@
 
         <section id="experience" class="page-view">
             <h2 class="animate-in">Featured Experience</h2>
-            <div class="subsection-title" style="font-family: 'Space Grotesk', sans-serif;">Experience Outside the University</div>
-                        <div style="margin-bottom: 0.7rem; color: var(--text-secondary); font-size: 1rem;">Highlights of impactful activities, leadership, and creative work beyond campus life.</div>
-            <div class="experience-wrapper animate-in delay-1">
-                <button class="exp-nav left" onclick="scrollExp('professional',-1)"><i class="fas fa-chevron-left"></i></button>
-                <div class="experience-carousel" id="experienceCarouselProfessional">
+            <p class="experience-intro animate-in delay-1">
+                Scroll horizontally to explore highlights from <strong style="color: var(--text-primary); font-weight: 600;">beyond campus</strong>—volunteering, content, and professional growth—followed by <strong style="color: var(--text-primary); font-weight: 600;">university life</strong>: hackathons, committees, and campus achievements. One timeline, same look and feel.
+            </p>
+            <div class="featured-divider animate-in delay-1"></div>
+            <div class="experience-wrapper animate-in delay-2">
+                <button type="button" class="exp-nav left" onclick="scrollUnifiedExp(-1)" aria-label="Scroll experience left"><i class="fas fa-chevron-left"></i></button>
+                <div class="experience-carousel" id="experienceCarouselUnified">
                     <div class="card">
+                        <span class="exp-scope">Beyond campus</span>
                         <div class="project-preview">
                             <img src="images/IMG_3534.JPG" alt="Technical Upskilling">
                         </div>
@@ -615,6 +1267,7 @@
                         </div>
                     </div>
                     <div class="card">
+                        <span class="exp-scope">Beyond campus</span>
                         <div class="project-preview">
                             <img src="images/IMG_3147.JPG" alt=" Volunteer">
                         </div>
@@ -632,6 +1285,7 @@
                         </div>
                     </div>
                     <div class="card">
+                        <span class="exp-scope">Beyond campus</span>
                         <div class="project-preview">
                             <img src="images/IMG_0741.JPG" alt="Brand Campaigns">
                         </div>
@@ -648,8 +1302,8 @@
                             <span class="highlight" style="font-size: 0.85rem; font-weight: 600;">TikTok • Instagram</span>
                         </div>
                     </div>
-                    <!-- Placeholder Card 1 -->
                     <div class="card">
+                        <span class="exp-scope">Beyond campus</span>
                         <div class="project-preview">
                             <img src="images/IMG_2975.JPG" alt="Speaker Session">
                         </div>
@@ -666,16 +1320,12 @@
                             <span class="highlight" style="font-size: 0.85rem; font-weight: 600;">YOSH Youth Summer Camp • Speaker</span>
                         </div>
                     </div>
-                    <!-- Placeholder Card 2 -->
-                </div>
-                <button class="exp-nav right" onclick="scrollExp('professional',1)"><i class="fas fa-chevron-right"></i></button>
-            </div>
-            <div class="subsection-title" style="font-family: 'Space Grotesk', sans-serif;">Experience Inside the University</div>
-                        <div style="margin-bottom: 0.7rem; color: var(--text-secondary); font-size: 1rem;">Key involvements, achievements, and contributions during my university journey.</div>
-            <div class="experience-wrapper animate-in delay-1">
-                <button class="exp-nav left" onclick="scrollExp('main',-1)"><i class="fas fa-chevron-left"></i></button>
-                <div class="experience-carousel" id="experienceCarouselMain">
+                    <div class="exp-section-break" aria-hidden="true">
+                        <h3>Campus</h3>
+                        <p>Hackathons, committees, and achievements at UTeM.</p>
+                    </div>
                     <div class="card">
+                        <span class="exp-scope exp-scope--campus">Campus</span>
                         <div class="project-preview">
                             <img src="images/IMG_5714.JPG" alt="D’FTMK-A-Thon Hackathon">
                         </div>
@@ -693,6 +1343,7 @@
                         </div>
                     </div>
                     <div class="card">
+                        <span class="exp-scope exp-scope--campus">Campus</span>
                         <div class="project-preview">
                             <img src="images/IMG_2060.JPG" alt="Inter-Faculty Sports Event">
                         </div>
@@ -710,6 +1361,7 @@
                         </div>
                     </div>
                     <div class="card">
+                        <span class="exp-scope exp-scope--campus">Campus</span>
                         <div class="project-preview">
                             <img src="images/IMG_1648.JPG" alt="Convocation Festival Audio Committee">
                         </div>
@@ -727,6 +1379,7 @@
                         </div>
                     </div>
                     <div class="card">
+                        <span class="exp-scope exp-scope--campus">Campus</span>
                         <div class="project-preview">
                             <img src="images/IMG_4665.JPG" alt="Southern Region Tadabbur Tour Program">
                         </div>
@@ -744,6 +1397,7 @@
                         </div>
                     </div>
                     <div class="card">
+                        <span class="exp-scope exp-scope--campus">Campus</span>
                         <div class="project-preview">
                             <img src="images/IMG_5993.JPG" alt="Nasyid Competition Winner">
                         </div>
@@ -761,7 +1415,7 @@
                         </div>
                     </div>
                 </div>
-                <button class="exp-nav right" onclick="scrollExp('main',1)"><i class="fas fa-chevron-right"></i></button>
+                <button type="button" class="exp-nav right" onclick="scrollUnifiedExp(1)" aria-label="Scroll experience right"><i class="fas fa-chevron-right"></i></button>
             </div>
         </section>
 
@@ -811,6 +1465,26 @@
 
     </main>
 
+    <div id="certModal" class="cert-modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="certModalTitle">
+        <button type="button" class="cert-modal-backdrop" id="certModalBackdrop" aria-label="Close certificate viewer"></button>
+        <div class="cert-modal-dialog">
+            <div class="cert-modal-header">
+                <h3 id="certModalTitle">Certificate</h3>
+                <div class="cert-modal-actions">
+                    <a id="certModalOpenTab" class="cert-modal-open-tab" href="#" target="_blank" rel="noopener noreferrer">Open in new tab</a>
+                    <button type="button" class="cert-modal-close" id="certModalClose" aria-label="Close">×</button>
+                </div>
+            </div>
+            <div class="cert-modal-body">
+                <div class="cert-modal-loading" id="certModalLoading" aria-hidden="true">
+                    <div class="cert-modal-spinner" role="presentation"></div>
+                    <span>Loading…</span>
+                </div>
+                <iframe id="certModalFrame" title="Certificate PDF" src="about:blank"></iframe>
+            </div>
+        </div>
+    </div>
+
     <script>
         // Navigation Logic
         function navTo(pageId) {
@@ -834,71 +1508,151 @@
             document.getElementById('navItems').classList.toggle('open');
         }
 
-        /* --- EXPERIENCE CAROUSEL --- */
-        const carousel = document.getElementById('experienceCarousel');
-        let isDown = false, startX, scrollLeft;
+        (function initHeroPolaroid() {
+            var btn = document.getElementById('heroPolaroidBtn');
+            if (!btn) return;
+            var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-        carousel.addEventListener('mousedown', (e) => {
-            isDown = true;
-            carousel.classList.add('active');
-            startX = e.pageX - carousel.offsetLeft;
-            scrollLeft = carousel.scrollLeft;
-        });
-        carousel.addEventListener('mouseleave', () => {
-            isDown = false;
-            carousel.classList.remove('active');
-        });
-        carousel.addEventListener('mouseup', () => {
-            isDown = false;
-            carousel.classList.remove('active');
-        });
-        carousel.addEventListener('mousemove', (e) => {
-            if(!isDown) return;
-            e.preventDefault();
-            const x = e.pageX - carousel.offsetLeft;
-            const walk = (x - startX) * 2; //scroll-fast
-            carousel.scrollLeft = scrollLeft - walk;
-        });
-        let isScrolling;
-        carousel.addEventListener('scroll', () => {
-            clearTimeout(isScrolling);
-            isScrolling = setTimeout(() => {
-                carousel.classList.remove('active');
-            }, 150);
-        });
+            function syncAria() {
+                var cartoon = btn.classList.contains('is-cartoon');
+                btn.setAttribute('aria-pressed', cartoon ? 'true' : 'false');
+                btn.setAttribute('aria-label', cartoon ? 'Show original photo' : 'Show illustrated portrait');
+            }
 
-        // Experience Carousel Logic
-        function scrollExp(direction) {
-            const carousel = document.getElementById('experienceCarousel');
-            const card = carousel.querySelector('.card');
-            if (!card) return;
-            const scrollAmount = card.offsetWidth + 32; // card width + gap
-            carousel.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
-        }
+            btn.addEventListener('click', function() {
+                if (reduceMotion) {
+                    btn.classList.toggle('is-cartoon');
+                    syncAria();
+                    return;
+                }
+                if (btn.classList.contains('hero-polaroid--animating')) return;
+                btn.classList.add('hero-polaroid--animating');
+                window.setTimeout(function() {
+                    btn.classList.toggle('is-cartoon');
+                    syncAria();
+                }, 320);
+                window.setTimeout(function() {
+                    btn.classList.remove('hero-polaroid--animating');
+                }, 780);
+            });
+        })();
 
-        // Experience Carousel Logic (supports four carousels)
-        function scrollExp(which, direction) {
-            let id = 'experienceCarouselMain';
-            if (which === 'professional') id = 'experienceCarouselProfessional';
-            if (which === 'outside') id = 'experienceCarouselOutside';
-            if (which === 'inside') id = 'experienceCarouselInside';
-            const carousel = document.getElementById(id);
-            const card = carousel.querySelector('.card');
-            if (!card) return;
-            const scrollAmount = card.offsetWidth + 32; // card width + gap
-            carousel.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
-        }
+        (function initCertificateModal() {
+            var modal = document.getElementById('certModal');
+            var frame = document.getElementById('certModalFrame');
+            var titleEl = document.getElementById('certModalTitle');
+            var openTab = document.getElementById('certModalOpenTab');
+            var closeBtn = document.getElementById('certModalClose');
+            var backdrop = document.getElementById('certModalBackdrop');
+            var loading = document.getElementById('certModalLoading');
+            if (!modal || !frame) return;
 
-        // Touch/Mouse drag support for all carousels
-        ['experienceCarouselMain', 'experienceCarouselProfessional', 'experienceCarouselOutside', 'experienceCarouselInside'].forEach(function(id) {
-            const carousel = document.getElementById(id);
+            function showLoading() {
+                if (loading) {
+                    loading.classList.remove('is-hidden');
+                    loading.setAttribute('aria-hidden', 'false');
+                }
+            }
+            function hideLoading() {
+                if (loading) {
+                    loading.classList.add('is-hidden');
+                    loading.setAttribute('aria-hidden', 'true');
+                }
+            }
+
+            var loadFallbackTimer = null;
+
+            window.openCertificateModal = function(url, title) {
+                var label = title || 'Certificate';
+                titleEl.textContent = label;
+                openTab.href = url;
+                showLoading();
+                if (loadFallbackTimer) clearTimeout(loadFallbackTimer);
+                frame.onload = function() {
+                    hideLoading();
+                    frame.onload = null;
+                    if (loadFallbackTimer) {
+                        clearTimeout(loadFallbackTimer);
+                        loadFallbackTimer = null;
+                    }
+                };
+                frame.src = url;
+                loadFallbackTimer = setTimeout(function() {
+                    hideLoading();
+                    loadFallbackTimer = null;
+                }, 6000);
+                modal.classList.add('is-open');
+                modal.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';
+                setTimeout(function() {
+                    closeBtn.focus();
+                }, 120);
+            };
+
+            window.closeCertificateModal = function() {
+                modal.classList.remove('is-open');
+                modal.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = '';
+                hideLoading();
+                if (loadFallbackTimer) {
+                    clearTimeout(loadFallbackTimer);
+                    loadFallbackTimer = null;
+                }
+                var clearFrame = function() {
+                    frame.src = 'about:blank';
+                    frame.onload = null;
+                };
+                if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                    clearFrame();
+                } else {
+                    setTimeout(clearFrame, 380);
+                }
+            };
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && modal.classList.contains('is-open')) {
+                    closeCertificateModal();
+                }
+            });
+
+            document.querySelectorAll('.cert-list a.cert-item[href$=".pdf"]').forEach(function(link) {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    var label = this.querySelector('.cert-name');
+                    var name = label ? label.textContent.trim() : 'Certificate';
+                    openCertificateModal(this.getAttribute('href'), name);
+                });
+            });
+
+            closeBtn.addEventListener('click', function() {
+                closeCertificateModal();
+            });
+            backdrop.addEventListener('click', function() {
+                closeCertificateModal();
+            });
+        })();
+
+        function scrollUnifiedExp(direction) {
+            const carousel = document.getElementById('experienceCarouselUnified');
             if (!carousel) return;
-            let isDown = false, startX, scrollLeft;
+            const card = carousel.querySelector('.card');
+            if (!card) return;
+            const gap = parseFloat(getComputedStyle(carousel).gap) || 18;
+            const scrollAmount = card.offsetWidth + gap;
+            carousel.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+        }
+
+        (function initExperienceCarouselDrag() {
+            const carousel = document.getElementById('experienceCarouselUnified');
+            if (!carousel) return;
+            let isDown = false;
+            let startX = 0;
+            let scrollLeftStart = 0;
             carousel.addEventListener('mousedown', (e) => {
                 isDown = true;
                 carousel.classList.add('dragging');
                 startX = e.pageX - carousel.offsetLeft;
-                scrollLeft = carousel.scrollLeft;
+                scrollLeftStart = carousel.scrollLeft;
             });
             carousel.addEventListener('mouseleave', () => {
                 isDown = false;
@@ -913,25 +1667,9 @@
                 e.preventDefault();
                 const x = e.pageX - carousel.offsetLeft;
                 const walk = (x - startX) * 1.2;
-                carousel.scrollLeft = scrollLeft - walk;
+                carousel.scrollLeft = scrollLeftStart - walk;
             });
-            // Touch events
-            let touchStartX = 0, touchScrollLeft = 0;
-            carousel.addEventListener('touchstart', (e) => {
-                touchStartX = e.touches[0].pageX;
-                touchScrollLeft = carousel.scrollLeft;
-            });
-            carousel.addEventListener('touchmove', (e) => {
-                const x = e.touches[0].pageX;
-                const walk = (x - touchStartX) * 1.2;
-                carousel.scrollLeft = touchScrollLeft - walk;
-            });
-        });
+        })();
     </script>
-</script>
-
-<script>
-
-</script>
 </body>
 </html>
