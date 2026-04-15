@@ -1316,6 +1316,10 @@
             border-radius: 8px;
             opacity: 0.9;
         }
+        /* Project Collection: nudge screenshot crop slightly to the right */
+        #experienceCarouselProjects .project-preview img {
+            object-position: 34% center;
+        }
         .project-preview.project-preview--placeholder {
             font-size: 1rem;
             flex-direction: column;
@@ -1948,14 +1952,13 @@
 
             <div class="experience-block animate-in delay-3">
                 <h3 class="experience-block-title">Project Collection</h3>
-                <p class="experience-block-desc">Technical builds in development, design, and problem solving. Screenshots can be added when your project photos are ready.</p>
+                <p class="experience-block-desc">Software and system builds across inspection platforms and point of sale tools, combining hands on development, thoughtful design, and careful problem solving for practical impact.</p>
                 <div class="experience-wrapper">
                     <button type="button" class="exp-nav left" onclick="scrollExpCarousel('experienceCarouselProjects', -1)" aria-label="Scroll Project Collection left"><i class="fas fa-chevron-left"></i></button>
                     <div class="experience-carousel" id="experienceCarouselProjects">
                     <div class="card">
-                        <div class="project-preview project-preview--placeholder" aria-hidden="true">
-                            <i class="fas fa-clipboard-check"></i>
-                            <span>Photo coming soon</span>
+                        <div class="project-preview">
+                            <img src="images/ipetro.jpeg" alt="iPetro Inspection System" loading="lazy" decoding="async">
                         </div>
                         <h3>iPetro Inspection System</h3>
                         <p style="font-size: 0.9rem; margin-bottom: 1rem;">
@@ -1973,9 +1976,8 @@
                         </div>
                     </div>
                     <div class="card">
-                        <div class="project-preview project-preview--placeholder" aria-hidden="true">
-                            <i class="fas fa-burger"></i>
-                            <span>Photo coming soon</span>
+                        <div class="project-preview">
+                            <img src="images/KlikBurger.jpeg" alt="Klik Burger POS login screen" loading="lazy" decoding="async">
                         </div>
                         <h3>Klik Burger!</h3>
                         <p style="font-size: 0.9rem; margin-bottom: 1rem;">
@@ -2472,9 +2474,9 @@
                 volunteerism: {
                     title: 'Volunteerism',
                     html:
-                        '<p>I am actively involved in several organizations at my university to develop my interest in volunteer work. My journey started with the Tuah Volunteer Team, where I gained valuable experience in teamwork, communication, and organizing activities. Through this experience, I learned that volunteering is not only about helping others, but also about improving myself and building strong personal skills.</p>' +
-                        '<p>Because of my active involvement, I was selected by the Kementerian Perpaduan Negara to represent my university as a volunteer in the YSS ASEAN Students Volunteer Mission to Sarawak 2025. This program included students from other ASEAN countries such as Singapore and Vietnam, which gave me the opportunity to work in an international environment.</p>' +
-                        '<p>This is my biggest achievement in volunteering so far, and it has helped me improve my confidence, leadership and global perspective.</p>'
+                        '<p>I am active in several university organizations around volunteer work, beginning with the Tuah Volunteer Team for teamwork, communication, and organizing. Volunteering showed me that helping others also grows my own skills.</p>' +
+                        '<p>Kementerian Perpaduan Negara selected me to represent my university on the YSS ASEAN Students Volunteer Mission to Sarawak 2025, alongside peers from ASEAN countries such as Singapore and Vietnam in an international setting.</p>' +
+                        '<p>It remains my biggest volunteering achievement so far, strengthening my confidence, leadership, and global perspective.</p>'
                 },
                 content: {
                     title: 'Content Creation',
@@ -2486,8 +2488,8 @@
                 webdev: {
                     title: 'Web Development',
                     html:
-                        '<p>I build web interfaces with HTML, CSS, and JavaScript, and I connect pages to backend services when a feature needs secure data exchange. I shape layouts so they stay readable on different screen sizes, and I keep components organized so future changes stay straightforward.</p>' +
-                        '<p>I also work with databases to store, query, and protect information that the application depends on. Whether I am refining styling or debugging integration, I aim for solutions that stay clear for users and maintainable for the next iteration.</p>'
+                        '<p>In pursuing my childhood dream of becoming a software engineer, I have always held on to the principle that even small progress is still meaningful progress. This mindset motivates me to continuously explore and deepen my knowledge in computer science, both inside and outside the classroom.</p>' +
+                        '<p>I have participated in many online and offline courses to further enhance my understanding in this field. Although I have faced various challenges throughout this journey, I remain grateful because being involved in this field allows me to keep learning wherever I am, simply by opening my laptop.</p>'
                 }
             };
 
