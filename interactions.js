@@ -1,7 +1,3 @@
-/**
- * Portfolio interactions — prototype contact flow (no backend).
- * Client-side validation (including email format) and simulated success feedback.
- */
 (function () {
     'use strict';
 
@@ -14,7 +10,6 @@
         return (s || '').replace(/^\s+|\s+$/g, '');
     }
 
-    /** Practical email format check (client-side only). */
     function isValidEmail(value) {
         var s = trim(value);
         if (!s || s.length > 254) return false;
@@ -36,9 +31,6 @@
         el.setAttribute('aria-invalid', 'true');
     }
 
-    /**
-     * @returns {{ ok: true, name: string, email: string, topic: string, message: string } | { ok: false, message: string, focusId: string }}
-     */
     function validateContactForm() {
         var nameEl = document.getElementById('contactName');
         var emailEl = document.getElementById('contactEmail');

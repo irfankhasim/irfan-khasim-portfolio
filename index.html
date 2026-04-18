@@ -9,7 +9,6 @@
     <link rel="preload" href="images/IMG-0001.png" as="image" type="image/png">
 
     <style>
-                                /* Uniform card text style for all carousels */
                                 .experience-carousel .card h3,
                                 .experience-carousel .card p,
                                 .experience-carousel .card ul,
@@ -35,7 +34,6 @@
                                 .experience-carousel .card span.highlight {
                                     color: var(--accent-primary);
                                 }
-                /* --- CERTIFICATIONS (clickable PDF links) --- */
                 .cert-heading-wrap {
                     margin-bottom: 1.25rem;
                 }
@@ -196,7 +194,6 @@
                         transform: none;
                     }
                 }
-        /* --- DESIGN TOKENS --- */
         :root {
             color-scheme: dark;
             --bg-primary: #131211;
@@ -275,7 +272,6 @@
             background: rgba(0, 0, 0, 0.04);
         }
 
-        /* --- RESET & BASE --- */
         * { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
         
         body {
@@ -287,7 +283,6 @@
             overflow-x: hidden;
             display: flex;
             flex-direction: column;
-            /* Layered textures: stipple, grid, diagonal weave, soft light orbs (first = top layer) */
             background-image:
                 radial-gradient(rgba(255, 255, 255, 0.038) 0.5px, transparent 1px),
                 linear-gradient(rgba(255, 255, 255, 0.022) 1px, transparent 1px),
@@ -334,7 +329,6 @@
                 radial-gradient(ellipse 48% 42% at 6% 86%, rgba(0, 0, 0, 0.04), transparent 55%);
         }
 
-        /* Subtle film-grain / noise (sits above bg color, below page content) */
         body::before {
             content: '';
             position: fixed;
@@ -362,7 +356,6 @@
 
         a, button { cursor: pointer; color: inherit; border: none; font-family: inherit; text-decoration: none; }
 
-        /* --- NAVIGATION --- */
         header {
             position: fixed;
             top: 0; left: 0; width: 100%;
@@ -495,7 +488,6 @@
         
         .mobile-menu-btn { display: none; font-size: 1.2rem; background: transparent; color: var(--text-primary); }
 
-        /* --- MAIN LAYOUT --- */
         main {
             position: relative;
             z-index: 1;
@@ -508,11 +500,9 @@
             padding: 0 1.5rem 4rem;
         }
 
-        /* --- PAGE LOGIC --- */
         .page-view { display: none; opacity: 0; transition: opacity 0.3s ease; }
         .page-view.active { display: block; opacity: 1; }
 
-        /* Only Home gets flex centering */
         #home.active {
             display: flex;
             min-height: 80vh;
@@ -521,7 +511,6 @@
             align-items: stretch;
         }
 
-        /* --- ANIMATIONS --- */
         .animate-in {
             opacity: 0;
             transform: translateY(20px);
@@ -533,7 +522,6 @@
         .delay-2 { animation-delay: 0.2s; }
         .delay-3 { animation-delay: 0.3s; }
 
-        /* --- TYPOGRAPHY & COMPONENTS --- */
         h1 { font-family: 'Space Grotesk', sans-serif; font-size: 3.5rem; font-weight: 700; margin-bottom: 1.5rem; line-height: 1.1; letter-spacing: -1.5px; }
         h2 { font-family: 'Space Grotesk', sans-serif; font-size: 2.5rem; margin-bottom: 2rem; border-bottom: 1px solid var(--glass-border); padding-bottom: 1rem; display: inline-block; }
         h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; margin-bottom: 0.5rem; }
@@ -556,7 +544,6 @@
         .btn-outline { border: 1px solid var(--glass-border); background: rgba(255,255,255,0.03); color: var(--text-primary); }
         .btn-outline:hover { background: rgba(255,255,255,0.08); }
 
-        /* Cards */
         .card {
             background: var(--glass-bg);
             border: 1px solid var(--glass-border);
@@ -569,9 +556,7 @@
         }
         .card:hover { transform: translateY(-5px); border-color: var(--accent-primary); box-shadow: 0 10px 40px -10px rgba(0,0,0,0.5); }
 
-        /* --- PAGE SPECIFIC --- */
 
-        /* HOME */
         .hero-layout {
             display: grid;
             grid-template-columns: minmax(0, 1fr) minmax(300px, 0.58fr);
@@ -801,7 +786,6 @@
             }
         }
 
-        /* ABOUT */
         #about {
             width: 100%;
         }
@@ -925,7 +909,6 @@
             }
         }
 
-        /* ABOUT DETAIL MODAL */
         .about-modal {
             position: fixed;
             inset: 0;
@@ -1057,7 +1040,6 @@
             z-index: 0;
             pointer-events: none;
         }
-        /* Gallery polaroids: larger frames, hero-style paper + inset photo */
         .about-modal__polaroid {
             position: absolute;
             width: clamp(132px, 22vmin, 210px);
@@ -1112,7 +1094,6 @@
             height: 100%;
             object-fit: cover;
         }
-        /* Corners pushed outward for clearer separation between frames */
         .about-modal__polaroid--tl {
             top: 2%;
             left: 2%;
@@ -1139,7 +1120,6 @@
             --polaroid-rot: -4.5deg;
             --polaroid-delay: 0.24s;
         }
-        /* Content Creation: polaroids a bit closer to the dialog, not tight */
         .about-modal.about-modal--content .about-modal__scene {
             padding: clamp(2.65rem, 11vmin, 6.5rem);
         }
@@ -1208,7 +1188,6 @@
             }
         }
 
-        /* PROJECTS */
         .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
         .project-preview {
             height: 200px; background: var(--project-preview-bg); border-radius: 8px; margin-bottom: 1.5rem;
@@ -1222,7 +1201,6 @@
             content: '▹'; position: absolute; left: 0; color: var(--accent-primary);
         }
 
-        /* HISTORY */
         .history-layout { display: grid; grid-template-columns: 2fr 1fr; gap: 3rem; }
         .timeline-item { position: relative; padding-left: 2rem; border-left: 2px solid var(--glass-border); padding-bottom: 3rem; }
         .timeline-item::before {
@@ -1239,7 +1217,6 @@
             }
         }
 
-        /* CONTACT */
         .contact-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
         .resume-preview-block p {
             font-size: 0.95rem;
@@ -1336,7 +1313,6 @@
             color: var(--text-primary);
         }
 
-        /* --- EXPERIENCE CAROUSEL --- */
         .experience-wrapper {
             position: relative;
             margin-top: 1.35rem;
@@ -1369,7 +1345,6 @@
             scroll-snap-align: start;
             height: auto;
         }
-        /* University Involvement carousel: consistent card height and tidy vertical rhythm */
         .experience-carousel--leadership .card {
             min-height: clamp(500px, 54vh, 620px);
         }
@@ -1422,7 +1397,6 @@
             }
         }
 
-        /* RESPONSIVE */
         @media (max-width: 900px) {
             .about-pillars-grid, .history-layout, .contact-wrapper { grid-template-columns: 1fr; }
             h1 { font-size: 2.5rem; }
@@ -1438,7 +1412,6 @@
             border-radius: 8px;
             opacity: 0.9;
         }
-        /* Project Collection: nudge screenshot crop slightly to the right */
         #experienceCarouselProjects .project-preview img {
             object-position: 34% center;
         }
@@ -1463,7 +1436,6 @@
             opacity: 0.75;
         }
 
-        /* Experience: tighter heading spacing (global h2 uses large margin-bottom) */
         #experience > h2 {
             margin-bottom: 0.4rem;
             padding-bottom: 0.55rem;
@@ -1501,7 +1473,6 @@
             border-radius: 2px;
         }
 
-        /* --- CERTIFICATE PDF MODAL --- */
         .cert-modal {
             position: fixed;
             inset: 0;
@@ -2243,7 +2214,6 @@
     </div>
 
     <script>
-        // Navigation Logic
         function navTo(pageId) {
             document.querySelectorAll('.nav-btn').forEach(btn => {
                 btn.classList.remove('active');
