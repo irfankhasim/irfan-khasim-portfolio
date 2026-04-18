@@ -805,14 +805,23 @@
             font-size: 1.12rem;
             color: var(--text-primary);
             line-height: 1.7;
+            margin: 0;
         }
-        .about-intro p:not(.about-intro__lead) {
-            font-size: 1.05rem;
-            color: #ffffff;
-            line-height: 1.7;
-        }
-        html[data-theme="light"] .about-intro p:not(.about-intro__lead) {
+        .about-focus-heading {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(1.15rem, 2.5vw, 1.35rem);
+            font-weight: 600;
             color: var(--text-primary);
+            margin: 2.5rem 0 0.35rem 0;
+            letter-spacing: -0.02em;
+            max-width: none;
+        }
+        .about-focus-sub {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin: 0 0 1.35rem 0;
+            max-width: none;
         }
         .about-pillars-grid {
             display: grid;
@@ -876,12 +885,20 @@
             font-size: 1.2rem;
             font-weight: 600;
             color: var(--text-primary);
-            margin: 0;
+            margin: 0 0 0.65rem 0;
             letter-spacing: -0.02em;
             line-height: 1.25;
         }
+        .about-pillar__summary {
+            flex: 1;
+            min-width: 0;
+            font-size: 0.92rem;
+            line-height: 1.58;
+            color: var(--text-secondary);
+            margin: 0;
+        }
         .about-pillar__actions {
-            margin-top: auto;
+            margin-top: 1.25rem;
             padding-top: 1rem;
             border-top: 1px solid var(--glass-border);
         }
@@ -1743,23 +1760,18 @@
             <h2 class="animate-in">About Me</h2>
             <div class="animate-in delay-1 about-intro">
                 <p class="about-intro__lead">
-                    I enjoy turning ideas into meaningful digital experiences, with a strong focus on quality and usability. My journey is built around three key areas: Volunteerism, Content Creation, and Web Development.
-                </p>
-                <p>
-                    In volunteerism, I have gained valuable experience in teamwork, communication, and leadership while contributing to impactful initiatives. These experiences have shaped how I collaborate and approach real world challenges.
-                </p>
-                <p>
-                    In content creation, I share insights and experiences related to technology and personal growth, allowing me to present ideas in a clear and engaging way.
-                </p>
-                <p>
-                    In web development, I focus on building responsive and interactive websites, while continuously exploring new tools and improving my skills to create better user experiences.
+                    Outside lecture halls I split my week between welcoming campus visitors, filming or editing a brand deliverable, and tightening layouts or logic in a side project. The lanes feed each other: hosting teaches patience under noise, content teaches pacing, code teaches structure.
                 </p>
             </div>
+
+            <h3 class="about-focus-heading animate-in delay-1">Where that time goes</h3>
+            <p class="about-focus-sub animate-in delay-1">Skim the cards for a quick overview. Use <strong>Learn more</strong> when you want the full story in a focused panel.</p>
 
             <div class="about-pillars-grid animate-in delay-2">
                 <article class="about-pillar" aria-labelledby="about-pillar-title-vol">
                     <span class="about-pillar__icon" aria-hidden="true"><i class="fas fa-hands-helping"></i></span>
                     <h3 id="about-pillar-title-vol" class="about-pillar__title">Volunteerism</h3>
+                    <p class="about-pillar__summary">Ambassador shifts put me at the front line of campus programmes: greeting visitors, aligning with organisers, and keeping communication steady when timelines slip. It is practice in composure, listening, and coordinating people who rarely share the same context.</p>
                     <div class="about-pillar__actions">
                         <button type="button" class="btn btn-outline about-detail-trigger" data-about-key="volunteerism" aria-haspopup="dialog" aria-controls="aboutDetailModal">
                             Learn more <i class="fas fa-arrow-right" aria-hidden="true"></i>
@@ -1769,6 +1781,7 @@
                 <article class="about-pillar" aria-labelledby="about-pillar-title-content">
                     <span class="about-pillar__icon" aria-hidden="true"><i class="fas fa-photo-video"></i></span>
                     <h3 id="about-pillar-title-content" class="about-pillar__title">Content Creation</h3>
+                    <p class="about-pillar__summary">Brand collaborations live on TikTok and Instagram for me, with tight runtimes, honest framing, and captions that match how people actually scroll. The craft is in pacing: what you show in frame one, what you withhold until the middle, and how you close without sounding like a script.</p>
                     <div class="about-pillar__actions">
                         <button type="button" class="btn btn-outline about-detail-trigger" data-about-key="content" aria-haspopup="dialog" aria-controls="aboutDetailModal">
                             Learn more <i class="fas fa-arrow-right" aria-hidden="true"></i>
@@ -1778,6 +1791,7 @@
                 <article class="about-pillar" aria-labelledby="about-pillar-title-web">
                     <span class="about-pillar__icon" aria-hidden="true"><i class="fas fa-laptop-code"></i></span>
                     <h3 id="about-pillar-title-web" class="about-pillar__title">Web Development</h3>
+                    <p class="about-pillar__summary">Front end work starts with layout discipline. HTML and CSS stay legible on small screens; JavaScript comes in when behaviour needs to stick. When data has to persist or stay private, I wire in services and databases so the interface never outruns what the backend can safely promise.</p>
                     <div class="about-pillar__actions">
                         <button type="button" class="btn btn-outline about-detail-trigger" data-about-key="webdev" aria-haspopup="dialog" aria-controls="aboutDetailModal">
                             Learn more <i class="fas fa-arrow-right" aria-hidden="true"></i>
@@ -2217,7 +2231,8 @@
         function navTo(pageId) {
             document.querySelectorAll('.nav-btn').forEach(btn => {
                 btn.classList.remove('active');
-                if(btn.getAttribute('onclick').includes(pageId)) btn.classList.add('active');
+                var oc = btn.getAttribute('onclick');
+                if (oc && oc.includes(pageId)) btn.classList.add('active');
             });
 
             document.querySelectorAll('.page-view').forEach(view => {
@@ -2225,14 +2240,17 @@
             });
             
             const target = document.getElementById(pageId);
+            if (!target) return;
             target.classList.add('active');
 
-            document.getElementById('navItems').classList.remove('open');
+            var navItems = document.getElementById('navItems');
+            if (navItems) navItems.classList.remove('open');
             window.scrollTo(0,0);
         }
 
         function toggleMenu() {
-            document.getElementById('navItems').classList.toggle('open');
+            var el = document.getElementById('navItems');
+            if (el) el.classList.toggle('open');
         }
 
         (function initThemeToggle() {
