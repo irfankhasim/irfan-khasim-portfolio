@@ -273,6 +273,15 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
+
+        html {
+            scroll-behavior: smooth;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+        }
         
         body {
             font-family: 'Inter', sans-serif;
@@ -1316,13 +1325,23 @@
             gap: 1.8rem;
             overflow-x: auto;
             scroll-behavior: smooth;
-            scroll-snap-type: x mandatory;
+            scroll-snap-type: x proximity;
+            scroll-padding-inline: 0.35rem;
+            overscroll-behavior-x: contain;
             -webkit-overflow-scrolling: touch;
             padding: 0.5rem 0 1.5rem;
             cursor: grab;
         }
         .experience-carousel.dragging {
             cursor: grabbing;
+            scroll-behavior: auto;
+            scroll-snap-type: none;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .experience-carousel {
+                scroll-behavior: auto;
+                scroll-snap-type: none;
+            }
         }
         .experience-carousel::-webkit-scrollbar {
             display: none;
@@ -2224,7 +2243,12 @@
 
             var navItems = document.getElementById('navItems');
             if (navItems) navItems.classList.remove('open');
-            window.scrollTo(0,0);
+            var instant = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            try {
+                window.scrollTo({ top: 0, left: 0, behavior: instant ? 'auto' : 'smooth' });
+            } catch (err) {
+                window.scrollTo(0, 0);
+            }
         }
 
         function toggleMenu() {
